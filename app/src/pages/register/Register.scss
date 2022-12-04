@@ -1,0 +1,68 @@
+@use '../../variables' as v;
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400;700&display=swap');
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Lato', sans-serif;
+}
+body {
+	.registerDiv {
+		background-color: pink;
+		.backLinkDiv {
+			background-color: aliceblue;
+		}
+		.inputDiv {
+			background-color: burlywood;
+			.formDiv {
+				background-color: red;
+				.title {
+					background-color: aqua;
+				}
+				.formItem {
+					background-color: chartreuse;
+					.label {
+						background-color: darkgreen;
+					}
+					.input,
+					.label .input {
+						background-color: deeppink;
+					}
+					&.login {
+						background-color: coral;
+						.label {
+						}
+						.input {
+						}
+					}
+					&.password {
+						.label {
+						}
+						.input {
+						}
+					}
+					&.email {
+						.label {
+						}
+						.input {
+						}
+					}
+					&.phone {
+						.label {
+						}
+						.input {
+						}
+					}
+					&.accept {
+						.label {
+							.input {
+							}
+						}
+					}
+				}
+				.inputBtn {
+				}
+			}
+		}
+	}
+}
