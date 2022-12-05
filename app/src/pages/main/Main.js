@@ -1,15 +1,23 @@
-import React, { useState, useEffect, useContext } from 'react';
-import {ProfileContext} from './../../ProfileContext';
+import React, { useEffect, useContext } from 'react';
+import {
+	ProfileContext,
+	profileIndexContext,
+	numberOfProfilesContext,
+	prevBtnDisabledContext,
+} from '../../ContextProvider';
 import { Link } from 'react-router-dom';
 import './Main.scss';
+import icon1 from './icon-person.svg'
+import icon2 from './icon-checkmark.svg'
 
 const DATA_API = 'https://swapi.py4e.com/api/people/';
 const IMG = 'https://picsum.photos/534/383/?random&t=';
 
 export function Profile() {
 	const [profiles, setProfiles] = useContext(ProfileContext);
-	const [profileIndex, setProfileIndex] = useState(0);
-	const [numberOfProfiles, setnumberOfProfiles] = useState(0);
+	const [profileIndex, setProfileIndex] = useContext(profileIndexContext);
+	const [numberOfProfiles, setNumberOfProfiles] = useContext(numberOfProfilesContext);
+	const [prevBtnDisabled, setPrevBtnDisabled] = useContext(prevBtnDisabledContext);
 
 	let address = DATA_API + (profileIndex + 1);
 
@@ -32,61 +40,70 @@ export function Profile() {
 	}, [numberOfProfiles]);
 
 	async function nextProfile() {
-		document.getElementById('prevBtn').disabled = false;
+		setPrevBtnDisabled(0);
 		if (numberOfProfiles === profileIndex) {
-			setnumberOfProfiles(numberOfProfiles + 1);
+			setNumberOfProfiles(numberOfProfiles + 1);
 		}
 		setProfileIndex(profileIndex + 1);
 	}
 
 	const prevProfile = () => {
-		if (profileIndex > 0) {
-			setProfileIndex(profileIndex - 1);
+		if (profileIndex === 0) {
+			setPrevBtnDisabled(1);
 		} else if (profileIndex === 1) {
-			document.getElementById('prevBtn').disabled = true;
+			setProfileIndex(profileIndex - 1);
+			setPrevBtnDisabled(1);
+		} else if (profileIndex > 1) {
+			setProfileIndex(profileIndex - 1);
 		}
 	};
 
 	return (
 		<div className='App'>
-			<div className='author'>Antoni Michera</div>
-			<Link to='/register' className='registerLink'>
-				formularz rejestracyjny
-			</Link>
+			<div className='top'>
+				<div className='author'>Antoni Michera</div>
+				<Link to='/register' className='registerLink'>
+					<div>formularz rejestracyjny</div>
+				</Link>
+			</div>
 			<div className='main'>
 				<div className='image'>
-					{!profiles[profileIndex] && <span>Ładuję...</span>}
+					{!profiles[profileIndex] && <div>Ładuję...</div>}
 					{profiles[profileIndex] && <img src={profiles[profileIndex].img} alt='profile' />}
 				</div>
 				<div className='elements'>
-					<div className='name'>
-						{!profiles[profileIndex] && <span>Ładuję...</span>}
-						{profiles[profileIndex] && <span>{profiles[profileIndex].name}</span>}
-					</div>
-					<div className='icons'>
-						<div className='icon'></div>
-						<div className='icon'></div>
+					<div className='nameBox'>
+						{!profiles[profileIndex] && <div>Ładuję...</div>}
+						{profiles[profileIndex] && <div className='name'>{profiles[profileIndex].name}</div>}
+						<div className='icons'>
+							<div className='icon1'>
+								<img src={icon1} alt='person icon'></img>
+							</div>
+							<div className='icon2'>
+								<img src={icon2} alt='checkmark icon'></img>
+							</div>
+						</div>
 					</div>
 					<div className='data'>
 						<div className='text birth_year'>
-							<span>born:</span>
-							{!profiles[profileIndex] && <span>Ładuję...</span>}
-							{profiles[profileIndex] && <span>{profiles[profileIndex].birth_year}</span>}
+							<label>born:</label>
+							{!profiles[profileIndex] && <div>Ładuję...</div>}
+							{profiles[profileIndex] && <div>{profiles[profileIndex].birth_year}</div>}
 						</div>
 						<div className='text eye-color'>
-							<span>eye color:</span>
-							{profiles[profileIndex] && <span>{profiles[profileIndex].eye_color}</span>}
-							{!profiles[profileIndex] && <span>Ładuję...</span>}
+							<label>eye color:</label>
+							{profiles[profileIndex] && <div>{profiles[profileIndex].eye_color}</div>}
+							{!profiles[profileIndex] && <div>Ładuję...</div>}
 						</div>
 					</div>
 				</div>
 			</div>
 			<div className='btns'>
-				<button id='prevBtn' onClick={prevProfile}>
-					previous profiles
+				<button id='prevBtn' onClick={prevProfile} disabled={prevBtnDisabled}>
+					<div>prev profiles</div>
 				</button>
 				<button id='nextBtn' onClick={nextProfile}>
-					next profiles
+					<div>next profiles</div>
 				</button>
 			</div>
 		</div>

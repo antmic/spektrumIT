@@ -1,7 +1,466 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400;700&display=swap');
+@use '../../variables' as v;
 
-* {
-	box-sizing: border-box;
-	font-family: 'Lato', sans-serif;
+//common
+.App {
+	.top {
+		margin: 1% 2%;
+		.author {
+			font-family: 'Lato';
+			font-style: normal;
+			font-weight: 400;
+			line-height: v.$line-height-normal;
+		}
+		.registerLink {
+			background: v.$btn-color-army;
+			box-shadow: 10px 4px 4px rgba(0, 0, 0, 0.75);
+			border-radius: 20px;
+			height: 75%;
+			display: flex;
+			align-items: center;
+			text-align: left;
+			text-decoration: none;
+			div {
+				margin: 0 15%;
+				font-family: 'Lato';
+				font-style: italic;
+				font-weight: 400;
+				line-height: v.$line-height-normal;
+				/* or 30px */
+				color: v.$text-color-white;
+				border: none;
+				text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+			}
+		}
+	}
+	.main {
+		margin: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background-color: v.$bgc-color-warmgray;
+		backdrop-filter: blur(280px);
+		/* Note: backdrop-filter has minimal browser support */
+		box-shadow: 10px 3px 5px rgba(0, 0, 0, 0.5);
+		.image {
+			margin: 17.5% 15% 0 18%;
+			text-align: center;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.elements {
+			display: flex;
+			flex-direction: column;
+			width: 75%;
+			.nameBox {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				.name {
+					font-family: 'Inter';
+					font-style: normal;
+					font-weight: 800;
+					text-align: center;
+				}
+				.icons {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					.icon1 {
+						margin-right: 5px;
+					}
+				}
+			}
+			.data {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: flex-start;
+				.text {
+					display: flex;
+					label,
+					div {
+						font-family: 'Inter';
+						font-style: italic;
+						font-weight: 100;
+					}
+					label {
+						margin-right: 10px;
+					}
+				}
+			}
+		}
+	}
+	.btns {
+		margin: auto;
+		width: 70.8%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		button {
+			margin: 3%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 5px;
+			height: 75%;
+			background: v.$btn-color-green;
+			box-shadow: 10px 4px 4px rgba(0, 0, 0, 0.75);
+			border-radius: 20px;
+			div {
+				width: 80%;
+				font-family: 'Lato';
+				font-style: italic;
+				font-weight: 400;
+				line-height: v.$line-height-normal;
+				text-align: center;
+				color: v.$text-color-white;
+				text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+			}
+		}
+	}
 }
 
+//mobile small
+
+.App {
+	.top {
+		height: 7%;
+		.author {
+			font-size: 20px;
+		}
+		.registerLink {
+			width: 41.3%;
+			div {
+				font-size: 13px;
+			}
+		}
+	}
+	.main {
+		width: 90%;
+		border-radius: 200px 60px 300px 100px;
+		height: 60%;
+		.image {
+			width: 75%;
+			height: 42%;
+			img {
+				border-radius: 100px 20px 100px 50px;
+			}
+		}
+		.elements {
+			.nameBox {
+				width: 200px;
+				width: 100%;
+				margin-top: 20px;
+				position: relative;
+				.name {
+					width: 67%;
+					font-size: 14px;
+					line-height: 18px;
+					margin-right: 10px;
+				}
+				.icons {
+					position: absolute;
+					right: 0;
+					div img {
+						height: 15px;
+					}
+				}
+			}
+			.data {
+				margin: 5% 0 5% 12%;
+				.text {
+					label,
+					div {
+						font-size: 12px;
+						line-height: 20px;
+					}
+				}
+			}
+		}
+	}
+	.btns {
+		button {
+			div {
+				height: 25px;
+				font-size: 12px;
+			}
+		}
+	}
+}
+
+//bigger smartphones
+@media (min-width: 300px) {
+	.App {
+		.top {
+			.registerLink {
+				div {
+					font-size: 16px;
+				}
+			}
+		}
+		.main {
+			.elements {
+				.nameBox {
+					.name {
+						font-size: 20px;
+					}
+					.icons {
+						div img {
+							height: 18px;
+						}
+					}
+				}
+				.data {
+					.text {
+						label,
+						div {
+							font-size: 16px;
+						}
+					}
+				}
+			}
+		}
+		.btns {
+			button {
+				height: auto;
+				div {
+					height: auto;
+					font-size: 14px;
+				}
+			}
+		}
+	}
+}
+
+//small tablets
+@media (min-width: 450px) {
+	.App {
+		.top {
+			height: 10%;
+			.author {
+				font-size: 30px;
+			}
+			.registerLink {
+				width: 200px;
+				div {
+					font-size: 20px;
+				}
+			}
+		}
+		.main {
+			border-radius: 300px 60px 300px 100px;
+			height: 70%;
+			.image {
+				width: 66.6%;
+				height: 51.8%;
+				img {
+					border-radius: 200px 20px 100px 50px;
+				}
+			}
+			.elements {
+				.nameBox {
+					margin-top: 20px;
+					.name {
+						width: 50%;
+						font-size: 22px;
+						line-height: v.$line-height-normal;
+						margin: 2% 7% 2% 9%;
+					}
+					.icons {
+						right: 10%;
+						div img {
+							height: 18px;
+						}
+					}
+				}
+				.data {
+					margin: 10px 20%;
+					.text {
+						display: flex;
+						label,
+						div {
+							font-size: 18px;
+							line-height: 20px;
+						}
+					}
+				}
+			}
+		}
+		.btns {
+			button {
+				padding: 5px;
+				padding-bottom: 10px;
+				width: 50%;
+				height: auto;
+				div {
+					height: auto;
+					font-size: 20px;
+				}
+			}
+		}
+	}
+}
+
+//big tablets
+@media (min-width: 650px) {
+	.App {
+		.top {
+			height: 10%;
+			.author {
+				font-size: 30px;
+			}
+			.registerLink {
+				width: 200px;
+				div {
+					font-size: 25px;
+				}
+			}
+		}
+		.main {
+			border-radius: 300px 60px 300px 100px;
+			height: 70%;
+			.image {
+				width: 66.6%;
+				height: 51.8%;
+				img {
+					border-radius: 200px 20px 100px 50px;
+				}
+			}
+			.elements {
+				.nameBox {
+					margin-top: 30px;
+					.name {
+						font-size: 34px;
+						line-height: v.$line-height-normal;
+						margin: 2% 7% 2% 9%;
+					}
+					.icons {
+						div img {
+							height: 25px;
+						}
+						.icon1 {
+							margin-right: 10px;
+						}
+					}
+				}
+				.data {
+					margin: 20px 20%;
+					.text {
+						display: flex;
+						label,
+						div {
+							font-size: 30px;
+							line-height: 30px;
+						}
+					}
+				}
+			}
+		}
+		.btns {
+			button {
+				padding: 15px;
+				padding-bottom: 20px;
+				width: 40%;
+				height: auto;
+				border-radius: 30px;
+				div {
+					height: auto;
+					font-size: 24px;
+				}
+			}
+		}
+	}
+}
+
+//desktop
+@media (min-width: 950px) {
+	.App {
+		.top {
+			height: 10%;
+			.author {
+				font-size: 30px;
+			}
+			.registerLink {
+				width: 21.3%;
+				div {
+					font-size: 30px;
+				}
+			}
+		}
+		.main {
+			border-radius: 500px 60px 300px 100px;
+			width: 800px;
+			height: 740px;
+			margin-top: 40px;
+			margin-bottom: 20px;
+			.image {
+				width: 66.6%;
+				height: 51.8%;
+				img {
+					border-radius: 200px 20px 100px 50px;
+				}
+			}
+			.elements {
+				width: 85%;
+				padding-bottom: 30px;
+				.nameBox {
+					display: flex;
+					margin: 0;
+					.name {
+						font-size: 40px;
+						line-height: 61px;
+						margin: 3% 7% 1% 9%;
+					}
+					.icons {
+						bottom: 13px;
+						right: 9%;
+						margin: 0;
+						div img {
+							width: 48px;
+							height: auto;
+						}
+						.icon1 {
+							img {
+								width: 52px;
+								height: 35px;
+							}
+						}
+						.icon2 {
+							img {
+								width: 47px;
+								height: 44px;
+							}
+						}
+					}
+				}
+				.data {
+					display: flex;
+					margin: 0 150px;
+					margin-top: 0;
+					.text {
+						display: flex;
+						label,
+						div {
+							font-size: 20px;
+							line-height: 24px;
+						}
+					}
+				}
+			}
+		}
+		.btns {
+			justify-content: space-around;
+			margin: 0 auto;
+			button {
+				width: 38%;
+				div {
+					padding: 0;
+					height: 34.66px;
+					font-size: 30px;
+				}
+			}
+		}
+	}
+}
